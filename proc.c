@@ -557,6 +557,9 @@ procdump(void)
   }
 }
 
-void printHello(void){
-  cprintf("Hola desde el console");
+void endProcess(void){
+  if(myproc() != 0){
+    cprintf("\n %s el proceso ha terminado \n", myproc()->name);
+    kill(myproc()->pid);
+  }
 }
