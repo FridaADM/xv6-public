@@ -1,3 +1,4 @@
+#include "types.h"
 struct stat;
 struct rtcdate;
 
@@ -31,7 +32,7 @@ char * shmat(int);
 int shdemat(int);
 int getppid(void);
 int signal(int, sighandler_t);
-int killsignal(int, int);
+int killsignal(int pid, int signum);
 //int signal(int, void(*func)(void));
 //int signal(int, sighandler_t;
 

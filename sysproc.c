@@ -6,6 +6,7 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
+#include "types.h"
 
 int
 sys_fork(void)
@@ -109,28 +110,27 @@ int sys_reboot(void){
   return 0;
 }
 
-int sys_getppid(void) {
-  return myproc()->parent->pid;
-}
-
-int sys_signal(void) {
-  int signum;
-  int func;
-  if ( argint(0, &signum) < 0 )  return -1;
-  if ( argint(1, &func) < 0 )  return -1;
-  signum -= 1; 
-  if ( signum > 3 || signum < 0 )  return -1;
-  myproc()->signals[signum] = (sighandler_t)func;
-  return 1;
-}
-
-/*int sys_signal(void){
+int sys_signal(void){
   int signum;
   int function;
-  if(argint(0, &signum) < 0)
+  if(argint(0, &signum) < 0){
     return -1;
-  if(argint(1, &function) < 0)
+  }
+  if(argint(1, &function) < 0){
     return -1;
-  myproc()->signals[signum] = (void (* func) (void))function;
-  myproc()->signals[signum] = (sighandler_t)function;
-}*/
+  }
+ 
+   if (signum > 0 && signum <= 4)
+   {
+     int value = (int)myproc()->signals[signum-1];
+     myproc()->signals[signum-1] = (sighandler_t)function;
+     return value;
+   }
+   else{
+    return -1;
+  };
+ }
+ 
+ int sys_getppid(void){
+ return myproc()->parent->pid;
+  } 

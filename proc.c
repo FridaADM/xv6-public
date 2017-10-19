@@ -6,7 +6,7 @@
 #include "x86.h"
 #include "proc.h"
 #include "spinlock.h"
-#include #"stdio.h"
+#include "stdio.h"
 
 struct {
   struct spinlock lock;
@@ -580,7 +580,7 @@ int sys_killsignal(void){
   if(argint(0, &pid) < 0) return -1;
   if(argint(1, &signum) < 0) return -1;
   if(signum > 4 || signum < 1) return -1;
-  for(p = ptable.proc; p<&table.proc[NPROC]; p++){
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
     if(p->pid == pid) break;   
     if(p->pid != pid) return -1;
 
@@ -589,5 +589,4 @@ int sys_killsignal(void){
     p->tf->esp -= 4;
     p->tf->eip = (uint)p->signals[signum];
     return 1;
-  }
 }
