@@ -30,6 +30,7 @@ OBJS = \
 	vm.o\
 	mem.o\
 
+
 # Cross-compiling (e.g., on Mac OS X)
 # TOOLPREFIX = i386-jos-elf
 
@@ -181,6 +182,7 @@ UPROGS=\
 	_fibo\
 	_shmtest\
 	_test_signal\
+	_rename\
 
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)
