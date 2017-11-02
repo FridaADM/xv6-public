@@ -112,6 +112,7 @@ extern int sys_shdemat(void);
 extern int sys_getppid(void);
 extern int sys_signal(void);
 extern int sys_killsignal(void);
+extern int sys_chmod(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -143,7 +144,8 @@ static int (*syscalls[])(void) = {
 [SYS_shdemat] sys_shdemat,
 [SYS_getppid] sys_getppid,
 [SYS_signal] sys_signal,
-[SYS_killsignal] sys_killsignal
+[SYS_killsignal] sys_killsignal,
+[SYS_chmod] sys_chmod
 };
 
 void

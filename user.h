@@ -33,6 +33,7 @@ int shdemat(int);
 int getppid(void);
 int signal(int, sighandler_t);
 int killsignal(int pid, int signum);
+int chmod(char *, char *);
 //int signal(int, void(*func)(void));
 //int signal(int, sighandler_t;
 
