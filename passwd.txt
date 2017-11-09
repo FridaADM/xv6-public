@@ -1,0 +1,2 @@
+frida:1:password:
+otro:2:cisco:
